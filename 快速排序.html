@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //在阮一峰老师的博客看的那种思路
+    //优点简单粗暴易懂，缺点，破坏了原有的数组结构，还增加了空间复杂度
+    function quickSort(arr) {
+        if (arr.length > 1) {
+            var len = arr.length;
+            var index = Math.floor((len - 1) / 2);
+            var temp = arr.splice(index, 1);
+            var left = [], right = [];
+            arr.map(function (value) {
+                value < temp ? left.push(value) : right.push(value);
+            })
+            return quickSort(left).concat(temp, right);
+        }
+        else {
+            return arr;
+        }
+    }
+
+    // var qs = quickSort([1, 5, 4, 3, 2]);
+    // console.log(qs);
+
+    //一般的快速排序解法
+    function quickSort1(arr, left, right) {
+        if(right-left > 1){
+            var index = Math.floor((right + left) / 2);
+            var temp = arr[index];
+            var i = left, j = right;
+            while (i < j){
+                while(i<j && arr[i] < temp){
+                    i++;
+                }
+                while (i<j&&arr[j] > temp){
+                    j--
+                };
+                if(i<j){
+                    swap(arr,i,j);
+                    i++;
+                }
+            }
+
+            quickSort1(arr,left,i-1);
+            quickSort1(arr,i,right);
+        }
+    }
+
+    function swap(arr,i,j) {
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    var array = [1,0,8,2,7,9,6];
+    quickSort1(array,0,array.length-1);
+    console.log(array)
+</script>
+</body>
+</html>

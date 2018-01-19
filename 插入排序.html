@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    Array.prototype.insertSort = function () {
+        var len = this.length;
+        var i = 1;
+        //array[0]一定有序，所以从第二个数开始
+        for(i;i<len;i++){
+            var j = i-1;
+            //将待排数缓存起来
+            var temp = this[i];
+            //while循环当temp遇到第一个比它小的数的时候终止循环
+            while(temp < this[j]){
+            //待排数 到 遇到的第一个比它小的数 之间的数向后移动一位
+                this[j+1] = this[j];
+                j--;
+            }
+            //将待排数放到第一个比它小的数后面
+            this[j+1] = temp;
+        }
+        console.log(this);
+    };
+    var arr = [1,5,2,4,3,7,4];
+    arr.insertSort();
+</script>
+</body>
+</html>

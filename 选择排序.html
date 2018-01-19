@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    Array.prototype.selectSort = function () {
+        var len = this.length;
+        for(var j = 0;j<len-1;j++){
+            var index = j;
+            for(var i= j+1;i<len;i++){
+                if(this[index] > this[i]){
+                    index = i;
+                }
+            }
+            swap(this,j,index)
+            console.log(this);
+        }
+        console.log(this)
+    }
+    function swap(arr,i,j) {
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    var arr = [1,6,2,4,7,3];
+    arr.selectSort();
+</script>
+</body>
+</html>
