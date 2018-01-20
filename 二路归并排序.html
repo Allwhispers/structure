@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function merge(arr) {
+        var len = arr.length;
+        if(len > 1){
+            var index = Math.floor(len/2);
+            var left = arr.slice(0,index);
+            var right = arr.slice(index);
+            return mergeSort(merge(left),(merge(right)));
+        }
+        return arr;
+    }
+    function mergeSort(left,right){
+        var temp = [];
+        while (right.length && left.length){
+            if(right[0]<left[0]){
+                temp.push(right.shift())
+            }else {
+                temp.push(left.shift())
+            }
+        }
+       return temp.concat(left,right);return
+    }
+
+   console.log(merge([1,5,2,3,6,7,8]))
+</script>
+</body>
+</html>
