@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //递归方式
+    Array.prototype.binSearch = function (value, start, end) {
+        if (end >= start) {
+            var index = Math.floor((end + start) / 2);
+            if (value === this[index]) {
+                return index;
+            } else {
+                value < this[index] ? end = index - 1 : start = index + 1;
+                return this.binSearch(value, start, end);
+            }
+        }
+        else {
+            return -1;
+        }
+    }
+
+    var arr = [1,2,4,5,9,10,16];
+    console.log(arr.binSearch(16,0,arr.length-1));
+
+    //非递归方式
+    Array.prototype.binSearch2 = function (value,start,end) {
+        var index  = Math.floor((start+end)/2);
+        while(start <= end){
+            if(this[index] === value){
+                return index;
+            }
+            else if(this[index] > value){
+                end = index - 1;
+                return this.binSearch2(value,start,end);
+            }
+            else if(this[index] < value){
+                start = index + 1;
+                return this.binSearch2(value,start,end);
+            }
+        }
+        return -1;
+    }
+    console.log(arr.binSearch2(16,0,arr.length-1));
+</script>
+</body>
+</html>
